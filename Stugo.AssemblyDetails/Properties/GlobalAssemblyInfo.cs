@@ -1,6 +1,6 @@
 using System.Reflection;
 
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides information about an assembly")]
 [assembly: AssemblyCompany("Stugo Ltd")]
 [assembly: AssemblyProduct("Stugo.AssemblyDetails")]
 [assembly: AssemblyCopyright("Copyright © Stugo Ltd 2016")]
