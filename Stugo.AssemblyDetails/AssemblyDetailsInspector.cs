@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -6,13 +6,16 @@ using System.Reflection;
 
 namespace Stugo
 {
-    public class AssemblyDetailsBase
+    public class AssemblyDetailsInspector
     {
-        static AssemblyDetailsBase()
+        public AssemblyDetailsInspector(Assembly assembly)
         {
-            // entry assembly is null during testing
-            var entryAssembly = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
-            var assemblyVersionInfo = FileVersionInfo.GetVersionInfo(entryAssembly.Location);
+            if (assembly == null)
+                throw new ArgumentNullException(nameof(assembly));
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            // null check above
+            var assemblyVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
             ProgramDataDirectory = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
@@ -23,10 +26,10 @@ namespace Stugo
             if (!Directory.Exists(ProgramDataDirectory))
                 Directory.CreateDirectory(ProgramDataDirectory);
 
-            ProgramFilesDirectory = Path.GetDirectoryName(entryAssembly.Location);
+            ProgramFilesDirectory = Path.GetDirectoryName(assembly.Location);
 
             // set version
-            var versionAttrib = (AssemblyInformationalVersionAttribute)entryAssembly
+            var versionAttrib = (AssemblyInformationalVersionAttribute)assembly
                 .GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), true)
                 .FirstOrDefault();
 
@@ -35,8 +38,8 @@ namespace Stugo
         }
 
 
-        public static string ProgramDataDirectory { get; private set; }
-        public static string ProgramFilesDirectory { get; private set; }
-        public static string CurrentVersion { get; private set; }
+        public string ProgramDataDirectory { get; }
+        public string ProgramFilesDirectory { get; private set; }
+        public string CurrentVersion { get; private set; }
     }
 }
