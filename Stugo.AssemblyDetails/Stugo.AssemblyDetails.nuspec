@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Stugo.AssemblyDetails</id>
+    <version>$version$</version>
+    <authors>Stugo Ltd</authors>
+    <description>Provides information about an assembly.</description>
+    <copyright>Copyright (c) Stugo Ltd 2016</copyright>
+  </metadata>
+</package>
