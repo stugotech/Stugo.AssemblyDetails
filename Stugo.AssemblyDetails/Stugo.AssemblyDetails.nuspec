@@ -7,4 +7,7 @@
     <description>Provides information about an assembly.</description>
     <copyright>Copyright (c) Stugo Ltd 2016</copyright>
   </metadata>
+  <files>
+    <file src="bin\net40\*.*" target="lib\net40" />
+  </files>
 </package>
