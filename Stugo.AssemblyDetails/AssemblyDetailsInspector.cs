@@ -17,10 +17,14 @@ namespace Stugo
             // null check above
             var assemblyVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
+            CompanyName = assemblyVersionInfo.CompanyName;
+            ProductName = assemblyVersionInfo.ProductName;
+            RegistryRoot = $"{CompanyName}\\{ProductName}";
+
             ProgramDataDirectory = Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-                assemblyVersionInfo.CompanyName,
-                assemblyVersionInfo.ProductName
+                CompanyName,
+                ProductName
             );
 
             if (!Directory.Exists(ProgramDataDirectory))
@@ -38,8 +42,11 @@ namespace Stugo
         }
 
 
+        public string CompanyName { get; }
+        public string ProductName { get; }
+        public string RegistryRoot { get; }
         public string ProgramDataDirectory { get; }
-        public string ProgramFilesDirectory { get; private set; }
-        public string CurrentVersion { get; private set; }
+        public string ProgramFilesDirectory { get; }
+        public string CurrentVersion { get; }
     }
 }
