@@ -8,6 +8,7 @@
     <copyright>Copyright (c) Stugo Ltd 2016</copyright>
   </metadata>
   <files>
-    <file src="bin\net40\*.*" target="lib\net40" />
+    <file src="bin\net40\Stugo.AssemblyDetails.dll" target="lib\net40\" />
+    <file src="bin\net40\Stugo.AssemblyDetails.pdb" target="lib\net40\" />
   </files>
 </package>
